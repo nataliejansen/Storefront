@@ -8,6 +8,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Home\Privacy.cshtml" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Include="Views\Administration\CreateRole.cshtml" />
+		<None Include="Views\Administration\EditRole.cshtml" />
+		<None Include="Views\Administration\EditUser.cshtml" />
+		<None Include="Views\Administration\EditUserRoles.cshtml" />
+		<None Include="Views\Administration\EditUsersInRole.cshtml" />
+		<None Include="Views\Administration\ListRoles.cshtml" />
+		<None Include="Views\Administration\ListUsers.cshtml" />
+		<None Include="Views\Home\Index.cshtml" />
+		<None Include="Views\Home\Privacy.cshtml" />
+		<None Include="Views\Shared\Error.cshtml" />
+		<None Include="Views\Shared\_Layout.cshtml" />
+		<None Include="Views\Shared\_LoginPartial.cshtml" />
+		<None Include="Views\Shared\_OriginalLayout.cshtml" />
+		<None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+		<None Include="Views\_ViewStart.cshtml" />
+		<None Include="Views\_ViewImports.cshtml" />
+	</ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />

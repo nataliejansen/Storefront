@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using FurnitureSteals.UI.MVC;
 
 namespace FurnitureSteals.UI.MVC.Models
 {
