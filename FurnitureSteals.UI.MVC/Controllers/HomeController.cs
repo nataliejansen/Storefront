@@ -15,8 +15,25 @@ namespace FurnitureSteals.UI.MVC.Controllers
         public IActionResult Index()
         {
             return View();
+
+        }
+
+        public IActionResult About()
+        {
+            return View();
+
+        }
+
+        public IActionResult Policies()
+        {
+            return View();
         }
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
         {
             return View();
         }
