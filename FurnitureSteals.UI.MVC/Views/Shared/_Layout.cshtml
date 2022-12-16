@@ -84,8 +84,25 @@
                                 <li><a asp-action="Index" asp-controller="Products">All Products</a></li>
                             </ul>
                         </li>
+                        <li class="has-children">
+                            <a href="#">Administration</a>
+                            <ul class="dropdown">
+                                <li><a href="@Url.Action("ListUsers", "Administration")">Users</a></li>
+                                <li><a href="@Url.Action("ListRoles", "Administration")">Roles</a></li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Manufacturers")">Manufacturers</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Category")">Categories</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
+
+
                 </div>
             </nav>
         </header>
@@ -102,24 +119,25 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Sell online</a></li>
-                                    <li><a href="#">Features</a></li>
-                                    <li><a href="#">Shopping cart</a></li>
-                                    <li><a href="#">Store builder</a></li>
+                                    <li><a asp-action="ListUsers" asp-controller="Administration">
+                                        Administration List Users</a></li>
+                                    <li><a href="#">Placeholder</a></li>
+                                    <li><a href="#">Placeholder</a></li>
+
                                 </ul>
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Mobile commerce</a></li>
-                                    <li><a href="#">Dropshipping</a></li>
-                                    <li><a href="#">Website development</a></li>
+                                    <li><a href="#">Placeholder</a></li>
+                                    <li><a href="#">Placeholder</a></li>
+                                    <li><a href="#">Placeholder</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Point of sale</a></li>
-                                    <li><a href="#">Hardware</a></li>
-                                    <li><a href="#">Software</a></li>
+                                    <li><a href="#">Placeholder</a></li>
+                                    <li><a href="#">Placeholder</a></li>
+                                    <li><a href="#">Placeholder</a></li>
                                 </ul>
                             </div>
                         </div>
