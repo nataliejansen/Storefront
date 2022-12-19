@@ -13,6 +13,7 @@ namespace FurnitureSteals.DATA.EF.Models
         public int CategoryId { get; set; }
         public decimal Price { get; set; }
         public int? Quantity { get; set; }
+        public string? ProductImage { get; set; }
 
         public virtual Category Category { get; set; } = null!;
         public virtual Manufacturer Manufacturer { get; set; } = null!;
