@@ -4,68 +4,89 @@
     ViewData["Title"] = "Products Home";
 }
 
-<h1>Our Products</h1>
+<section class="container">
 
-<p>
-    <a asp-action="Create" class="btn btn-primary text-center">Add a Product</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CollectionName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manufacturer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductStatusNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CollectionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductStatusNavigation.StatusName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
-            </td>
-        </tr>
+    <div class="container" align="center">
+        <p>
+            <h1>Our Products</h1>
+
+            <a asp-action="Create" class="btn btn-primary text-center">Add a Product</a>
+            <a asp-action="TiledProducts" class="btn btn-primary btn-small">Tile View</a>
+        </p>
+    </div>
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>
+                    Collection Name and Description
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductImage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Manufacturer)
+                </th>
+                <th>
+                    Navigations
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CollectionName)
+                        @Html.DisplayFor(modelItem => item.ProductDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <img src="~/images/@item.ProductImage" class="img-fluid" alt="@item.ProductDescription" />
+                    </td>
+                    <td>
+                        @Html.DisplayNameFor(modelItem => item.Category.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Manufacturer.CategoryName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+@section scripts {
+
+    <script>
+
+
+        //$() - How we select nodes/elements with jQuery
+        //$(document) - Targetting/selecting the DOM (Document Object Model)
+        //$(document).ready( function () {}) - The ready function - waits for all HTML and CSS to load before executing
+
+        $(document).ready( function () {
+
+            //Update the selector in the function to target the element with the class of table
+            $('.table').DataTable();
+
+
+        } );
+
+
+    </script>
+
 }
-    </tbody>
-</table>

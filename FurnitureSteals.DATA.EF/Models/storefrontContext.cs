@@ -155,6 +155,10 @@ namespace FurnitureSteals.DATA.EF.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.ProductImage)
+                    .HasMaxLength(75)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ManufacturerId).HasColumnName("ManufacturerID");
 
                 entity.Property(e => e.Price).HasColumnType("money");

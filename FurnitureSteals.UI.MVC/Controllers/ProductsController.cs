@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Drawing;
-using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
@@ -33,8 +32,19 @@ namespace FurnitureSteals.UI.MVC.Controllers
             return View(await storefrontContext.ToListAsync());
         }
 
-        // GET: Products/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> TiledProducts(int categoryId = 0, int page = 1)
+        {
+
+            int pageSize = 6;
+
+            var products = _context.Products.Include(p => p.Category).Include(p => p.Manufacturer).Include(p => p.ProductStatusNavigation);
+            
+
+            return View(await products.ToListAsync());
+        }
+
+            // GET: Products/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Products == null)
             {
