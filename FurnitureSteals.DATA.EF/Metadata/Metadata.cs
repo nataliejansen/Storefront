@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace FurnitureSteals.DATA.EF//.Metadata
+namespace FurnitureSteals.DATA.EF.Models
 {
 
     public class CategoryMetaData
@@ -55,6 +55,9 @@ namespace FurnitureSteals.DATA.EF//.Metadata
         public decimal Price { get; set; }
 
         public int? Quantity { get; set; }
+
+        [Display(Name = "Image")]
+        public string? ProductImage { get; set; }
     }
 
     public class ProductStatusMetaData
