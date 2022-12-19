@@ -4,13 +4,16 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="container" align="center">
+    <p>
+        <h1>Create a Manufacturer</h1>
 
-<h4>Manufacturer</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    </p>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4 offset-4">
+            <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CategoryName" class="control-label"></label>

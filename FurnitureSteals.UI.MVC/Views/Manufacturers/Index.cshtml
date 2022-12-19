@@ -4,11 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<section class="container">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <div class="container" align="center">
+        <p>
+            <h1>Manufacturers</h1>
+
+            <a asp-action="Create" class="btn btn-primary text-center">Add a Manufacturer</a>
+        </p>
+    </div>
 <table class="table">
     <thead>
         <tr>
@@ -33,3 +37,26 @@
 }
     </tbody>
 </table>
+</section>
+
+@section scripts {
+
+    <script>
+
+
+        //$() - How we select nodes/elements with jQuery
+        //$(document) - Targetting/selecting the DOM (Document Object Model)
+        //$(document).ready( function () {}) - The ready function - waits for all HTML and CSS to load before executing
+
+        $(document).ready(function () {
+
+            //Update the selector in the function to target the element with the class of table
+            $('.table').DataTable();
+
+
+        });
+
+
+    </script>
+
+    }

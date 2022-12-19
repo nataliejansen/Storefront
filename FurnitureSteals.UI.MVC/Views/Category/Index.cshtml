@@ -3,33 +3,60 @@
 @{
     ViewData["Title"] = "Index";
 }
+<section class="container">
 
-<h1>Index</h1>
+    <div class="container" align="center">
+        <p>
+            <h1>Categories</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-            </td>
-        </tr>
+            <a asp-action="Create" class="btn btn-primary text-center">Add a Category</a>
+        </p>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+@section scripts {
+
+    <script>
+
+
+        //$() - How we select nodes/elements with jQuery
+        //$(document) - Targetting/selecting the DOM (Document Object Model)
+        //$(document).ready( function () {}) - The ready function - waits for all HTML and CSS to load before executing
+
+        $(document).ready(function () {
+
+            //Update the selector in the function to target the element with the class of table
+            $('.table').DataTable();
+
+
+        });
+
+
+    </script>
+
 }
-    </tbody>
-</table>

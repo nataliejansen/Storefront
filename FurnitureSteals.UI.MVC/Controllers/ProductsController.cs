@@ -35,8 +35,6 @@ namespace FurnitureSteals.UI.MVC.Controllers
         public async Task<IActionResult> TiledProducts(int categoryId = 0, int page = 1)
         {
 
-            int pageSize = 6;
-
             var products = _context.Products.Include(p => p.Category).Include(p => p.Manufacturer).Include(p => p.ProductStatusNavigation);
             
 
