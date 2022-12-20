@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Drawing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using FurnitureSteals.DATA.EF.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Drawing;
 using FurnitureSteals.UI.MVC.Utilities;
-
+using Microsoft.AspNetCore.Hosting;
 
 namespace FurnitureSteals.UI.MVC.Controllers
 {
@@ -24,14 +24,13 @@ namespace FurnitureSteals.UI.MVC.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: Products
-        [AllowAnonymous]
+        // GET: NewProducts
         public async Task<IActionResult> Index()
         {
             var storefrontContext = _context.Products.Include(p => p.Category).Include(p => p.Manufacturer).Include(p => p.ProductStatusNavigation);
             return View(await storefrontContext.ToListAsync());
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> TiledProducts(int categoryId = 0, int page = 1)
         {
 
@@ -49,12 +48,11 @@ namespace FurnitureSteals.UI.MVC.Controllers
                 ViewBag.Category = categoryId;
             }
 
-
-            return View(products);
+            return View(await products.ToListAsync());
         }
 
-        // GET: Products/Details/5
-        public async Task<IActionResult> Details(int? id)
+            // GET: NewProducts/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Products == null)
             {
@@ -74,8 +72,7 @@ namespace FurnitureSteals.UI.MVC.Controllers
             return View(product);
         }
 
-        // GET: Products/Create
-
+        // GET: NewProducts/Create
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
@@ -85,12 +82,13 @@ namespace FurnitureSteals.UI.MVC.Controllers
             return View();
         }
 
-        // POST: Products/Create
+        // POST: NewProducts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,CollectionName,ProductDescription,ManufacturerId,ProductStatus,CategoryId,Price,Quantity,ProductImage,Image")] Product product)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Create([Bind("ProductId,CollectionName,ProductDescription,ManufacturerId,ProductStatus,CategoryId,Price,Quantity,ProductImage<Image")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +105,7 @@ namespace FurnitureSteals.UI.MVC.Controllers
 
                     //- verify the uploaded file has an extension matching one of the extensions in the list above
                     //- AND verify file size will work with our .NET app
-                    if (validExts.Contains(ext.ToLower()) && product.Image.Length < 4_194_303)//underscores don't change the number, they just make it easier to read
+                    if (validExts.Contains(ext.ToLower()) && product.Image.Length < 4_194_303)
                     {
                         //Generate a unique filename
                         product.ProductImage = Guid.NewGuid() + ext;
@@ -150,8 +148,6 @@ namespace FurnitureSteals.UI.MVC.Controllers
                 }
 
                 #endregion
-
-
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -162,8 +158,8 @@ namespace FurnitureSteals.UI.MVC.Controllers
             return View(product);
         }
 
-        // GET: Products/Edit/5
-        [Authorize(Roles ="Admin")]
+        // GET: NewProducts/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Products == null)
@@ -182,7 +178,7 @@ namespace FurnitureSteals.UI.MVC.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
+        // POST: NewProducts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -221,7 +217,7 @@ namespace FurnitureSteals.UI.MVC.Controllers
             return View(product);
         }
 
-        // GET: Products/Delete/5
+        // GET: NewProducts/Delete/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -243,10 +239,10 @@ namespace FurnitureSteals.UI.MVC.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
+        // POST: NewProducts/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Products == null)
