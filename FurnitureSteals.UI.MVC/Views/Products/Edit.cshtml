@@ -13,9 +13,10 @@
     <hr />
     <div class="row">
         <div class="col-md-4 offset-4">
-            <form asp-action="Edit">
+            <form asp-action="Edit" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="ProductId" />
+                <input type="hidden" asp-for="ProductImage" />
                 <div class="form-group">
                     <label asp-for="CollectionName" class="control-label"></label>
                     <input asp-for="CollectionName" class="form-control" />
@@ -52,9 +53,15 @@
                     <span asp-validation-for="Quantity" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="ProductImage" class="control-label"></label>
+                    <input type="file" asp-for="Image" class="form-control" />
+                    <span asp-validation-for="ProductImage" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <a asp-action="Edit" asp-route-id="@Model?.ProductId" class="btn btn-primary">Save</a> <br /><br /><div>
                         <a asp-action="Index">Back to List</a>
                     </div>
+                </div>
             </form>
         </div>
     </div>

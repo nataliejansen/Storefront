@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FurnitureSteals.DATA.EF.Models.Manufacturer>
+
+<section class="container">
+
+    <div class="container" align="center">
+        <p>
+            <h1>Tiled Manufacturers</h1>
+
+            <a asp-action="Create" class="btn btn-primary text-center">Add a Manufacturer</a>
+        </p>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ManufacturerId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ManufacturerId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ManufacturerId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

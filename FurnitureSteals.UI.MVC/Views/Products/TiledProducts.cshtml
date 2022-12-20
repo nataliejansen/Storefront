@@ -7,8 +7,20 @@
 <div class="container" align="center">
     <p>
         <h1> Our Products</h1>
-        <a asp-action="Create" class="btn btn-primary text-center">Add a Product</a>
+
+        <label for="categoryId" class="control-label d-block text-center"></label>
+        <select name="categoryId" class="form-control text-center mb-3" asp-items="ViewBag.CategoryId">
+            <option value="0">Filter by Category</option>
+        </select>
         <a asp-action="Index" class="btn btn-primary btn-small">List View</a>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <span>
+                <a asp-action="Create" class="btn btn-primary text-center">Add a Product</a>
+            </span>
+
+        }
     </p>
 
 </div>
@@ -36,5 +48,5 @@
                 </div>
             </div>
         }
-        </div>
+    </div>
 </div>

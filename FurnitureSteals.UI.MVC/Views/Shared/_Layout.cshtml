@@ -46,7 +46,8 @@
                         <div class="col-6 col-md-4 order-3 order-md-3 text-right">
                             <div class="site-top-icons">
                                 <ul>
-                                    <li><a href="#"><span class="icon icon-person"></span></a></li>
+                                    <li><a asp-action="ListUsers" asp-controller="Administration">
+                                        <span class="icon icon-person"></span></a></li>
                                     <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                                     <li>
                                         <a href="cart.html" class="site-cart">
@@ -67,16 +68,16 @@
                     <ul class="site-menu js-clone-nav d-none d-md-block">
                         <li><a asp-action="Index" asp-controller="Home">Home</a></li>
                         <li class="has-children active">
-                            <a href="#">About</a>
+                            <a asp-action="About" asp-controller="Home">About</a>
                             <ul class="dropdown">
-                                <li><a href="#">Our Story</a></li>
-                                <li><a href="#">Manufacturers</a></li>
-                                <li><a href="#">Our Policies</a></li>
+                                <li><a asp-action="About" asp-controller="Home">Our Story</a></li>
+                                @*<li><a href="@Url.Action("TiledManufacturers", "Manufacturers")">Manufacturers</a></li>*@
+                                <li><a asp-action="Policies" asp-controller="Home">Our Policies</a></li>
 
                             </ul>
                         </li>
                         <li class="has-children">
-                            <a href="#">Shop Products</a>
+                            <a asp-action="Index" asp-controller="Products">Shop Products</a>
                             <ul class="dropdown">
                                 <li><a href="#">Living Room</a></li>
                                 <li><a href="#">Bedroom</a></li>
@@ -87,7 +88,7 @@
                             </ul>
                         </li>
                         <li class="has-children">
-                            <a href="#">Administration</a>
+                            <a href="@Url.Action("ListUsers", "Administration")">Administration</a>
                             <ul class="dropdown">
                                 <li><a href="@Url.Action("ListUsers", "Administration")">Users</a></li>
                                 <li><a href="@Url.Action("ListRoles", "Administration")">Roles</a></li>
@@ -148,7 +149,7 @@
                         <h3 class="footer-heading mb-4">Promo</h3>
                         <a href="#" class="block-6">
                             <img src="~/images/salephoto.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
-                            <h3 class="font-weight-light  mb-0">Act Fast!</h3>
+                            <h3 class="mb-0">Act Fast!</h3>
                             <p>Sale ends 1/27/23</p>
                         </a>
                     </div>

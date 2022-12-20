@@ -15,8 +15,8 @@ namespace FurnitureSteals.DATA.EF.Models
         public int? Quantity { get; set; }
         public string? ProductImage { get; set; }
 
-        public virtual Category Category { get; set; } = null!;
-        public virtual Manufacturer Manufacturer { get; set; } = null!;
-        public virtual ProductStatus ProductStatusNavigation { get; set; } = null!;
+        public virtual Category? Category { get; set; } 
+        public virtual Manufacturer? Manufacturer { get; set; } 
+        public virtual ProductStatus? ProductStatusNavigation { get; set; } 
     }
 }
