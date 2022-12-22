@@ -88,7 +88,7 @@ namespace FurnitureSteals.UI.MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("ProductId,CollectionName,ProductDescription,ManufacturerId,ProductStatus,CategoryId,Price,Quantity,ProductImage<Image")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,CollectionName,ProductDescription,ManufacturerId,ProductStatus,CategoryId,Price,Quantity,ProductImage,Image")] Product product)
         {
             if (ModelState.IsValid)
             {
