@@ -42,7 +42,10 @@
                         @Html.DisplayFor(modelItem => item.Price)
                     </div>
                     <div>
-                        <a asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+                        <a asp-action="Details" asp-route-id="@item.ProductId" class="option1">Details</a>
+                        <a asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.ProductId" class="option2">
+                            Add To Cart
+                        </a>
                     </div>
 
                 </div>
