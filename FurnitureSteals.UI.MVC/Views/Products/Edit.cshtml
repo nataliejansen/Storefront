@@ -58,7 +58,9 @@
                     <span asp-validation-for="ProductImage" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <a asp-action="Edit" asp-route-id="@Model?.ProductId" class="btn btn-primary">Save</a> <br /><br /><div>
+@*                    <a asp-action="Edit" asp-route-id="@Model?.ProductId" class="btn btn-primary">Save</a>
+*@                    <input type="submit" value="Save" class="btn btn-primary">
+                    <br /><br /><div>
                         <a asp-action="Index">Back to List</a>
                     </div>
                 </div>
