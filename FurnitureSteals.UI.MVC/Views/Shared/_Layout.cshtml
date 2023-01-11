@@ -32,8 +32,8 @@
 
                         <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
                             <form action="" class="site-block-top-search">
-                                <span class="icon icon-search2"></span>
-                                <input type="text" class="form-control border-0" placeholder="Search">
+                                <span class=""></span>
+                                <input type="text" class="form-control border-0" placeholder="">
                             </form>
                         </div>
 
@@ -48,11 +48,11 @@
                                 <ul>
                                     <li><a asp-action="ListUsers" asp-controller="Administration">
                                         <span class="icon icon-person"></span></a></li>
-                                    <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
+                                    @*<li><a href="#"><span class="icon icon-heart-o"></span></a></li>*@
                                     <li>
                                         <a asp-action="Index" asp-controller="ShoppingCart" class="site-cart">
                                             <span class="icon icon-shopping_cart"></span>
-                                            <span class="count">2</span>
+                                            @*<span class="count">2</span>*@
                                         </a>
                                     </li>
                                     <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
@@ -79,11 +79,11 @@
                         <li class="has-children">
                             <a asp-action="Index" asp-controller="Products">Shop Products</a>
                             <ul class="dropdown">
-                                <li><a href="#">Living Room</a></li>
+                                @*<li><a href="#">Living Room</a></li>
                                 <li><a href="#">Bedroom</a></li>
                                 <li><a href="#">Dining</a></li>
                                 <li><a href="#">Mattresses</a></li>
-                                <li><a href="#">Rugs</a></li>
+                                <li><a href="#">Rugs</a></li>*@
                                 <li><a asp-action="Index" asp-controller="Products">All Products</a></li>
                             </ul>
                         </li>
@@ -115,65 +115,41 @@
         <footer class="site-footer border-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3 class="footer-heading mb-4">Navigations</h3>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li><a asp-action="ListUsers" asp-controller="Administration">
-                                        Administration List Users</a></li>
-                                    <li><a href="#">Placeholder</a></li>
-                                    <li><a href="#">Placeholder</a></li>
-
-                                </ul>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Placeholder</a></li>
-                                    <li><a href="#">Placeholder</a></li>
-                                    <li><a href="#">Placeholder</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Placeholder</a></li>
-                                    <li><a href="#">Placeholder</a></li>
-                                    <li><a href="#">Placeholder</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    
+                    <div class="col">
                         <h3 class="footer-heading mb-4">Promo</h3>
-                        <a href="#" class="block-6">
-                            <img src="~/images/salephoto.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
-                            <h3 class="mb-0">Act Fast!</h3>
-                            <p>Sale ends 1/27/23</p>
-                        </a>
+                            <img src="~/images/sale.jpg" alt="Image placeholder" class="img-fluid rounded mb-2 w-100">
+                            <h2 class="mb-0">Act Fast!</h2>
+                            <h3>Sale ends 1/27/23</h3>
+                        <p>Some exclusions may apply.</p>
+                        <a asp-action="Index" asp-controller="Products" class="btn btn-sm btn-primary text-center">Shop Now</a>
+                        
                     </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="block-5 mb-5">
+
+                    <div class="col">
+                        <form action="#" method="post">
+                            <label for="email_subscribe" class="footer-heading mb-3">Subscribe</label>
+                            <img src="~/images/subscribe.jpg" alt="Image placeholder" class="img-fluid rounded mb-2 w-15">
+                            <div class="form-group">
+                                <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+                                <input type="submit" class="btn btn-sm btn-primary mt-2" value="Send">
+                            </div>
+                        </form>
+                    </div>
+                    
+                        <div class="col mr-3 ml-3">
                             <h3 class="footer-heading mb-4">Contact Info</h3>
+                            <img src="~/images/contact.jpg" alt="Image placeholder" class="img-fluid rounded w-15">
                             <ul class="list-unstyled">
                                 <li class="address">203 Fake St <br />Kansas City, Missouri, USA</li>
                                 <li class="phone"><a href="tel://5555555555">+555-555-5555</a></li>
                                 <li class="email">emailaddress@domain.com</li>
-                                <a href="#" class="btn btn-sm btn-primary">Contact Form</a>
+                            <a asp-action="Contact" asp-controller="Home" class="btn btn-sm btn-primary">Contact Form</a>
                             </ul>
                         </div>
 
-                        <div class="block-7">
-                            <form action="#" method="post">
-                                <label for="email_subscribe" class="footer-heading">Subscribe</label>
-                                <div class="form-group">
-                                    <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                                    <input type="submit" class="btn btn-sm btn-primary" value="Send">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+
+                    
                 </div>
                 <div class="row pt-5 mt-5 text-center">
                     <div class="col-md-12">
