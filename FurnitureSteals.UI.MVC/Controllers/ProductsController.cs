@@ -34,14 +34,18 @@ namespace FurnitureSteals.UI.MVC.Controllers
         public async Task<IActionResult> TiledProducts(int categoryId = 0, int page = 1)
         {
 
-            var products = _context.Products.Include(p => p.Category).Include(p => p.Manufacturer).Include(p => p.ProductStatusNavigation);
+            var products = _context.Products.Where(p => p.ProductStatus != 4 && p.ProductStatus != 3)
+                .Include(p => p.Category)
+                .Include(p => p.Manufacturer)
+                .Include(p => p.ProductStatusNavigation);
 
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             ViewBag.Category = 0; //Added this variable to persist (save) the selected Category
 
             if (categoryId != 0)
             {
-                products = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Product, ProductStatus?>)products.Where(p => p.CategoryId == categoryId).ToList();
+                //products = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Product, ProductStatus?>)products.Where(p => p.CategoryId == categoryId).ToList();
+                //-- Check code in CORE3 Gadget Store for Category filtering
 
                 //Repopulate the dropdown with the current category selected
                 ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", categoryId);
@@ -193,6 +197,49 @@ namespace FurnitureSteals.UI.MVC.Controllers
 
             if (ModelState.IsValid)
             {
+                #region EDIT File Upload
+                //retain old image file name so we can delete if a new file was uploaded
+                string oldImageName = product.ProductImage;
+
+                //Check if the user uploaded a file
+                if (product.Image != null)
+                {
+                    //get the file's extension
+                    string ext = Path.GetExtension(product.Image.FileName);
+
+                    //list valid extensions
+                    string[] validExts = { ".jpeg", ".jpg", ".png", ".gif" };
+
+                    //check the file's extension against the list of valid extensions
+                    if (validExts.Contains(ext.ToLower()) && product.Image.Length < 4_194_303)
+                    {
+                        //generate a unique file name
+                        product.ProductImage = Guid.NewGuid() + ext;
+                        //build our file path to save the image
+                        string webRootPath = _webHostEnvironment.WebRootPath;
+                        string fullPath = webRootPath + "/images/";
+
+                        //Delete the old image
+                        if (oldImageName != "noimage.png")
+                        {
+                            ImageUtility.Delete(fullPath, oldImageName);
+                        }
+
+                        //Save the new image to webroot
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await product.Image.CopyToAsync(memoryStream);
+                            using (var img = Image.FromStream(memoryStream))
+                            {
+                                int maxImageSize = 500;
+                                int maxThumbSize = 100;
+                                ImageUtility.ResizeImage(fullPath, product.ProductImage, img, maxImageSize, maxThumbSize);
+                            }
+                        }
+
+                    }
+                }
+                #endregion
                 try
                 {
                     _context.Update(product);
