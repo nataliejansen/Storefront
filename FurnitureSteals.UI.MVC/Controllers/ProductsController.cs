@@ -80,7 +80,7 @@ namespace FurnitureSteals.UI.MVC.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "CategoryName");
             ViewData["ProductStatus"] = new SelectList(_context.ProductStatuses, "StatusId", "StatusName");
             return View();
@@ -156,7 +156,7 @@ namespace FurnitureSteals.UI.MVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", product.CategoryId);
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "CategoryName", product.ManufacturerId);
             ViewData["ProductStatus"] = new SelectList(_context.ProductStatuses, "StatusId", "StatusName", product.ProductStatus);
             return View(product);
@@ -176,7 +176,7 @@ namespace FurnitureSteals.UI.MVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", product.CategoryId);
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "CategoryName", product.ManufacturerId);
             ViewData["ProductStatus"] = new SelectList(_context.ProductStatuses, "StatusId", "StatusName", product.ProductStatus);
             return View(product);
@@ -258,7 +258,7 @@ namespace FurnitureSteals.UI.MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", product.CategoryId);
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "CategoryName", product.ManufacturerId);
             ViewData["ProductStatus"] = new SelectList(_context.ProductStatuses, "StatusId", "StatusName", product.ProductStatus);
             return View(product);
